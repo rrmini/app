@@ -14,6 +14,15 @@
             <div class="mb-3">
                 <Input type="password" placeholder="password confirmation" v-model="user.password_confirmation" />
             </div>
+            <div class="mb-3">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" v-model="user.role.name">
+                    <option disabled value="">Choose role</option>
+                    <option v-for="role in getRoles" :key="role.id">
+                        {{ role.name }}
+                    </option>
+                </select>
+
+            </div>
         </form>
         <div class="modal-footer">
             <button @click="addUser" type="button" class="btn btn-info" data-bs-dismiss="modal">Add</button>
