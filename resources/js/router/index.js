@@ -3,7 +3,7 @@ import Home from "@/Pages/Home.vue";
 import Login from "@/Pages/Auth/Login.vue";
 import Register from "@/Pages/Auth/Register.vue";
 import Dashboard from "@/Pages/Admin/Dashboard.vue";
-// import UserEdit from "../views/layouts/UserEdit";
+import UserEdit from "@/layouts/UserEdit.vue";
 // import Permissions from "../views/layouts/Permissions";
 // import EditPermissions from "../views/layouts/EditPermissions";
 // import Management from "../views/layouts/Management";
@@ -50,12 +50,12 @@ const routes = [
     //     component: ManagementEdit
     //
     // },
-    // {
-    //     path: '/user/:id',
-    //     name: 'UserEdit',
-    //     component: UserEdit
-    //
-    // },
+    {
+        path: '/user/:id',
+        name: 'UserEdit',
+        component: UserEdit
+
+    },
     // {
     //     path: '/permissions/:id',
     //     name: 'EditPermissions',

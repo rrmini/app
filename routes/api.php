@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\MainController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,3 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::get('get', [MainController::class, '__invoke']);  // get
 });
+
+Route::apiResource('users', UserController::class);
+//Route::apiResource('roles', RoleController::class);
+//Route::apiResource('permissions', PermissionController::class);

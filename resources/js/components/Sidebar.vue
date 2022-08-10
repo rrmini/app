@@ -42,8 +42,7 @@
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
-                    </li>
-                    <ul class="nav nav-treeview">
+                        <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -69,14 +68,19 @@
                             </a>
                         </li>
                     </ul>
-
+                    </li>
 
                     <li class="nav-header">MISCELLANEOUS</li>
                     <li class="nav-item">
-                        <a href="route('dashboard')" class="nav-link">
+                        <router-link :to="'/'" class="nav-link">
                             <i class="nav-icon fas fa-home"></i>
                             <p>Site</p>
-                        </a>
+                        </router-link>
+
+<!--                        <a href="route('dashboard')" class="nav-link">-->
+<!--                            <i class="nav-icon fas fa-home"></i>-->
+<!--                            <p>Site</p>-->
+<!--                        </a>-->
                     </li>
                     <!--                    <li class="nav-item">-->
                     <!--                        <a href="#" class="nav-link">-->
@@ -85,10 +89,15 @@
                     <!--                        </a>-->
                     <!--                    </li>-->
                     <li class="nav-item">
-                        <a href="#" class="nav-link" role="button">
+
+                        <a href="#"  @click.prevent="logout" class="nav-link" role="button">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>Logout</p>
                         </a>
+<!--                        <a href="#" class="nav-link" role="button">-->
+<!--                            <i class="nav-icon fas fa-sign-out-alt"></i>-->
+<!--                            <p>Logout</p>-->
+<!--                        </a>-->
                     </li>
                 </ul>
             </nav>
@@ -100,6 +109,11 @@
 
 <script>
 export default {
-    name: "Sidebar"
+    name: "Sidebar",
+    methods: {
+        logout() {
+            this.$store.dispatch('auth/logout', this.user)
+        },
+    },
 }
 </script>
