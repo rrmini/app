@@ -4,8 +4,8 @@ import Login from "@/Pages/Auth/Login.vue";
 import Register from "@/Pages/Auth/Register.vue";
 import Dashboard from "@/Pages/Admin/Dashboard.vue";
 import UserEdit from "@/layouts/UserEdit.vue";
-// import Permissions from "../views/layouts/Permissions";
-// import EditPermissions from "../views/layouts/EditPermissions";
+import Permissions from "@/Layouts/Permissions.vue";
+import EditPermissions from "@/Layouts/EditPermissions.vue";
 // import Management from "../views/layouts/Management";
 // import ManagementEdit from "../views/layouts/ManagementEdit";
 
@@ -32,12 +32,12 @@ const routes = [
         component: Dashboard
 
     },
-    // {
-    //     path: '/user/permissions',
-    //     name: 'Permissions',
-    //     component: Permissions
-    //
-    // },
+    {
+        path: '/user/permissions',
+        name: 'Permissions',
+        component: Permissions
+
+    },
     // {
     //     path: '/user/management',
     //     name: 'Management',
@@ -56,12 +56,12 @@ const routes = [
         component: UserEdit
 
     },
-    // {
-    //     path: '/permissions/:id',
-    //     name: 'EditPermissions',
-    //     component: EditPermissions
-    //
-    // },
+    {
+        path: '/permissions/:id',
+        name: 'EditPermissions',
+        component: EditPermissions
+
+    },
 
 ]
 

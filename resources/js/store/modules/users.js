@@ -3,7 +3,7 @@ import axios from "../../../axios/axios-instance.js";
 const state = {
     userList: [],
     roleList: [],
-    permissionsList: []
+    permissionsList: [],
 }
 
 const actions = {

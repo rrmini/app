@@ -44,7 +44,13 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+        $role = $this->permission->create([
+            'name' => $request->name
+        ]);
+        return response(['message'=>'Permission created']);
     }
 
     /**
@@ -76,9 +82,15 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Permission $permission)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+        $permission->update([
+            'name' => $request->name
+        ]);
+        return response(['message'=>'Permission updated']);
     }
 
     /**
@@ -87,8 +99,8 @@ class PermissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Permission $permission)
     {
-        //
+        $permission->delete();
     }
 }

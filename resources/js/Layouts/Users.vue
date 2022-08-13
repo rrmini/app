@@ -14,7 +14,7 @@
             <div class="mb-3">
                 <Input type="password" placeholder="password confirmation" v-model="user.password_confirmation" />
             </div>
-            <div class="mb-3">
+<!--            <div class="mb-3">-->
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" v-model="user.role.name">
                     <option disabled value="">Choose role</option>
                     <option v-for="role in getRoles" :key="role.id">
@@ -22,7 +22,7 @@
                     </option>
                 </select>
 
-            </div>
+<!--            </div>-->
         </form>
         <div class="modal-footer">
             <button @click="addUser" type="button" class="btn btn-info" data-bs-dismiss="modal">Add</button>
@@ -55,26 +55,14 @@
                                 <th>User</th>
                                 <th>Email</th>
                                 <th>Role</th>
-                                <th>Action 1</th>
-                                <th>Action 2</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
                                 <th>
                                     <button class="btn btn-info" @click="popup">Add</button>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-<!--                            <tr>-->
-<!--                                <td>183</td>-->
-<!--                                <td>John Doe</td>-->
-<!--                                <td>jhon@doe.com</td>-->
-<!--                                <td>Writer</td>-->
-<!--                                <td>-->
-<!--                                    <Button @click="popup">Edit</Button>-->
-<!--                                </td>-->
-<!--                                <td>-->
-<!--                                    <Button @click="closePopup">Close</Button>-->
-<!--                                </td>-->
-<!--                            </tr>-->
                             <tr v-for="user in getUsers" :key="user.id" >
                                 <td>{{ user.id }}</td>
                                 <td>{{ user.name }}</td>
@@ -84,11 +72,11 @@
                                 <td>
                                     <router-link
                                         :to="{ name: 'UserEdit', params: { id: user.id }}">
-                                        <button class="btn btn-info">  Edit </button>
+                                        <button class="btn btn-info"><i class="fa-solid fa-pen"></i></button>
                                     </router-link>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger" @click="deleteUser(user.id)"> Delete </button>
+                                    <button class="btn btn-danger" @click="deleteUser(user.id)"><i class="fa-solid fa-trash"></i></button>
                                 </td>
                                 <td></td>
                             </tr>

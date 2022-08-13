@@ -8,14 +8,15 @@
             <div class="mb-3">
                 <Input type="text" placeholder="email address" v-model="user.email" />
             </div>
-            <!--        <div class="mb-3">-->
-            <!--             v-model="user.password"-->
-            <!--            <Input type="password" placeholder="password" />-->
-            <!--        </div>-->
-            <!--        <div class="mb-3">-->
-            <!--            v-model="user.password_confirmation"-->
-            <!--            <Input type="password" placeholder="password confirmation" />-->
-            <!--        </div>-->
+            <div class="mb-3">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" v-model="user.role.name">
+                    <option disabled value="">Choose role</option>
+                    <option v-for="role in getRoles" :key="role.id">
+                        {{ role.name }}
+                    </option>
+                </select>
+
+            </div>
         </form>
         <div class="mb-3">
             <Button @click="updateUsers">Update</Button>
@@ -34,6 +35,9 @@ export default {
             user: {
                 name: "",
                 email: "",
+                role: {
+                    name
+                }
             }
         }
     },
@@ -41,16 +45,27 @@ export default {
         Button,
         Input,
     },
+    created() {
+        this.$store.dispatch('users/getRoles')
+    },
     methods: {
         updateUsers() {
             axios.put("/api/users/" + this.$route.params.id, {
                 name: this.user.name,
                 email: this.user.email,
+                role: this.user.role.name
             })
             .then(res => {
                 this.$router.push({name: 'Dashboard'})
             })
         },
+    },
+    computed: {
+        getRoles: {
+            get() {
+                return this.$store.state.users.roleList
+            }
+        }
     },
 }
 </script>

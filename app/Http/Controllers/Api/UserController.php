@@ -42,12 +42,6 @@ class UserController extends Controller
     {
         $user = $userAction->run($request->all());
 
-//        if(!$user) {
-//            return response()->json(["success" => false, "message" => "Save user failed"], 500);
-//        }
-//
-//        return response()->json(["success" => true, "message" => "Save user succeeded"]);
-
         if ($request->has('role')) {
             $user->assignRole($request->input('role'));
         }
@@ -93,13 +87,13 @@ class UserController extends Controller
     {
         $user->update($request->validated());
 
-//        if ($request->has('role')) {
-//            $user->assignRole($request->input('role'));
-//        }
-//
-//        if ($request->has('permissions')) {
-//            $user->givePermissionTo(collect($request->permissions)->pluck('id')->toArray());
-//        }
+        if ($request->has('role')) {
+            $user->assignRole($request->input('role'));
+        }
+
+        if ($request->has('permissions')) {
+            $user->givePermissionTo(collect($request->permissions)->pluck('id')->toArray());
+        }
 
         return response(['message'=>'User Updated', 'user'=>$user]);
     }
