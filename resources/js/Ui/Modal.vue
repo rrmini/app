@@ -6,7 +6,9 @@
                     <h5 class="modal-title">
                         <slot name="header"></slot>
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="close"></button>
+                    <button type="button" class="btn btn-tool" data-bs-dismiss="modal" aria-label="Close" @click="close">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <slot></slot>

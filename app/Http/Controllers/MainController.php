@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function __invoke() {
-        return 348263482634826482648;
+        return 348263482;
     }
 }

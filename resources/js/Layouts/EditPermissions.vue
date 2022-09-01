@@ -14,7 +14,7 @@
 
 <script>
 import axios from "../../axios/axios-instance.js"
-import Button from "@/Ui/Button.vue";
+import Button from "@/Ui/My-Button.vue";
 import Input from "@/Ui/Input.vue";
 export default {
     name: "EditPermissions",
@@ -30,7 +30,9 @@ export default {
         Input,
     },
     created() {
+        this.getPermission()
         this.$store.dispatch('users/getRoles')
+        // this.$store.dispatch('users/getPermissions')
     },
     methods: {
         updatePermissions() {
@@ -40,6 +42,15 @@ export default {
                 .then(res => {
                     this.$router.push({name: 'Permissions'})
                 })
+        },
+        getPermission() {
+            axios.get("/api/permissions/" + this.$route.params.id)
+            .then( response => {
+                this.permission.name = response.data.permission.name
+            })
+            .catch(error => {
+                console.log(error)
+            })
         },
     },
 }

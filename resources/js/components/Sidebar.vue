@@ -23,17 +23,30 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item menu-open">
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-<!--             :href="route('admin.dashboard.index')"                   -->
-                                <a  class="nav-link">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>Dashboard</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    <router-link :to="'/user/dashboard'">
+                        <li class="nav-item menu-open">
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a  class="nav-link">
+                                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                                        <p>Dashboard</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </router-link>
+<!--                    <router-link :to="'/user/management'">-->
+<!--                        <li class="nav-item menu-open">-->
+<!--                            <ul class="nav nav-treeview">-->
+<!--                                <li class="nav-item">-->
+<!--                                    <a  class="nav-link">-->
+<!--                                        <i class="fa-solid fa-user-gear  nav-icon"></i>-->
+<!--                                        <p>Management</p>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </li>-->
+<!--                    </router-link>-->
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-table"></i>
@@ -43,61 +56,53 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Admins</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Users</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Roles</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <router-link :to="'/user/permissions'" href="#" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Permissions</p>
-                            </router-link>
-                        </li>
+<!--                            <li class="nav-item">-->
+<!--                                <a href="#" class="nav-link">-->
+<!--                                    <i class="far fa-circle nav-icon"></i>-->
+<!--                                    <p>Admins</p>-->
+<!--                                </a>-->
+<!--                            </li>-->
+
+                            <li class="nav-item">
+                                <router-link :to="'/user/dashboard/users'" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Users</p>
+                                </router-link>
+                            </li>
+
+                            <li class="nav-item">
+                                <router-link :to="'/user/dashboard/roles'" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Roles</p>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link :to="'/user/dashboard/permissions'" href="#" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Permissions</p>
+                                </router-link>
+                            </li>
                     </ul>
                     </li>
 
                     <li class="nav-header">MISCELLANEOUS</li>
                     <li class="nav-item">
+                        <router-link :to="'/user/dashboard/userprofile'" class="nav-link">
+                            <i class="nav-icon fas fa-home"></i>
+                            <p>User Profile</p>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
                         <router-link :to="'/'" class="nav-link">
                             <i class="nav-icon fas fa-home"></i>
                             <p>Site</p>
                         </router-link>
-
-<!--                        <a href="route('dashboard')" class="nav-link">-->
-<!--                            <i class="nav-icon fas fa-home"></i>-->
-<!--                            <p>Site</p>-->
-<!--                        </a>-->
                     </li>
-                    <!--                    <li class="nav-item">-->
-                    <!--                        <a href="#" class="nav-link">-->
-                    <!--                            <i class="fas fa-circle nav-icon"></i>-->
-                    <!--                            <p>Level 1</p>-->
-                    <!--                        </a>-->
-                    <!--                    </li>-->
                     <li class="nav-item">
-
                         <a href="#"  @click.prevent="logout" class="nav-link" role="button">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>Logout</p>
                         </a>
-<!--                        <a href="#" class="nav-link" role="button">-->
-<!--                            <i class="nav-icon fas fa-sign-out-alt"></i>-->
-<!--                            <p>Logout</p>-->
-<!--                        </a>-->
                     </li>
                 </ul>
             </nav>

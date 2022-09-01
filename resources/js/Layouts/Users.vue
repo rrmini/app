@@ -35,16 +35,6 @@
                 <!-- card-header -->
                 <div class="card-header">
                     <h3 class="card-title">Users list</h3>
-                    <div class="card-tools">
-                        <div class="input-group input-group-sm">
-                            <input type="text" name="user_search" class="form-controlfloat-right" placeholder="Search">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0">
@@ -90,7 +80,7 @@
 
 <script>
 import axios from "../../axios/axios-instance";
-import Button from "@/Ui/Button.vue";
+import Button from "@/Ui/My-Button.vue";
 import Input from "@/Ui/Input.vue";
 import Modal from "@/Ui/Modal.vue";
 export default {

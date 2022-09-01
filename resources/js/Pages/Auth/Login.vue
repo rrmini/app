@@ -31,8 +31,8 @@
                 <div class="mb-0">
                     <div class="d-flex justify-content-between align-items-baseline">
 <!--                  v-if="canResetPassword"      :href="route('password.request')"-->
-                        <router-link to="/user/register" class="text-muted me-3">
-                            <a href="">Not registered ?</a>
+                        <router-link :to="'/user/register'" class="text-muted me-3">
+                            Not registered ?
                         </router-link>
 
                         <my-button class="ms-4 text-white-50" @click.prevent="login" >
@@ -51,7 +51,7 @@
 <script>
 import {defineComponent} from "vue";
 import AuthenticationCard from '@/Layouts/AuthenticationCard.vue'
-import MyButton from '@/Ui/Button.vue'
+import MyButton from '@/Ui/My-Button.vue'
 import MyCheckbox from '@/Ui/Checkbox.vue'
 import MyInput from '@/Ui/Input.vue'
 import MyLabel from '@/Ui/Label.vue'

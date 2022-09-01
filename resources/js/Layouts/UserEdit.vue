@@ -26,7 +26,7 @@
 
 <script>
 import axios from "../../axios/axios-instance.js"
-import Button from "@/Ui/Button.vue";
+import Button from "@/Ui/My-Button.vue";
 import Input from "@/Ui/Input.vue";
 export default {
     name: "UserEdit",
@@ -47,17 +47,28 @@ export default {
     },
     created() {
         this.$store.dispatch('users/getRoles')
+        this.getUser()
     },
     methods: {
         updateUsers() {
             axios.put("/api/users/" + this.$route.params.id, {
                 name: this.user.name,
                 email: this.user.email,
-                role: this.user.role.name
+                role: this.user.role.name,
             })
             .then(res => {
-                this.$router.push({name: 'Dashboard'})
+                this.$router.push({name: 'UsersList'})
             })
+        },
+        getUser() {
+            axios.get('/api/users/' + this.$route.params.id)
+                .then( response => {
+                    this.user.name = response.data.user.name
+                    this.user.email = response.data.user.email
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         },
     },
     computed: {

@@ -61,12 +61,12 @@
 <script>
 import {defineComponent} from "vue";
 import AuthenticationCard from '@/Layouts/AuthenticationCard.vue'
-import MyButton from '@/Ui/Button.vue'
+import MyButton from '@/Ui/My-Button.vue'
 import MyCheckbox from '@/Ui/Checkbox.vue'
 import MyInput from '@/Ui/Input.vue'
 import MyLabel from '@/Ui/Label.vue'
 export default defineComponent ({
-    // name: "Register"
+    name: "Register",
     components: {
         AuthenticationCard,
         MyButton,

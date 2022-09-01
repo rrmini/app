@@ -13,7 +13,7 @@ const actions = {
             console.log(response)
         }).catch(error => {
             console.log(error)
-        });
+        })
     },
     addUser({}, user) {
         axios.post('/api/users', {
@@ -24,7 +24,7 @@ const actions = {
             password_confirmation: user.password_confirmation
         }) .then(response => {
             if(response.data) {
-                window.location.replace("/user/dashboard")
+                window.location.replace("/user/dashboard/users")
                 console.log(response)
             }
         }).catch((error) => {
@@ -36,7 +36,7 @@ const actions = {
             name: permission.name,
         }) .then(response => {
             if(response.data) {
-                window.location.replace("/user/permissions")
+                window.location.replace("/user/dashboard/permissions")
                 console.log(response)
             }
         }).catch((error) => {
@@ -48,7 +48,7 @@ const actions = {
             name: role.name,
         }) .then(response => {
             if(response.data) {
-                window.location.replace("/user/management")
+                window.location.replace("/user/dashboard/roles")
                 console.log(response)
             }
         }).catch((error) => {
@@ -58,18 +58,18 @@ const actions = {
     getRoles(ctx) {
         axios.get('/api/roles').then(response => {
             ctx.commit('setRoleList', response.data.data)
-            console.log(response)
+            // console.log(response)
         }).catch(error => {
             console.log(error)
-        });
+        })
     },
     getPermissions(ctx) {
         axios.get('/api/permissions').then(response => {
             ctx.commit('setPermissionsList', response.data.data)
-            console.log(response)
+            // console.log(response)
         }).catch(error => {
             console.log(error)
-        });
+        })
     },
 }
 

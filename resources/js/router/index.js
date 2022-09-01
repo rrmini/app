@@ -6,8 +6,10 @@ import Dashboard from "@/Pages/Admin/Dashboard.vue";
 import UserEdit from "@/layouts/UserEdit.vue";
 import Permissions from "@/Layouts/Permissions.vue";
 import EditPermissions from "@/Layouts/EditPermissions.vue";
-// import Management from "../views/layouts/Management";
-// import ManagementEdit from "../views/layouts/ManagementEdit";
+import Roles from "@/layouts/Roles.vue";
+import RoleEdit from "@/layouts/RoleEdit.vue";
+import Users from "@/Layouts/Users.vue";
+import UserProfile from "@/Layouts/UserProfile.vue";
 
 
 const routes = [
@@ -29,15 +31,55 @@ const routes = [
     {
         path: '/user/dashboard',
         name: 'Dashboard',
-        component: Dashboard
+        component: Dashboard,
+        children: [
+            {
+                path: 'users',
+                component: Users,
+                name: 'UsersList'
+            },
+            {
+                path: 'userprofile',
+                name: 'UserProfile',
+                component: UserProfile
 
-    },
-    {
-        path: '/user/permissions',
-        name: 'Permissions',
-        component: Permissions
+            },
+            {
+                path: '/user/:id',
+                name: 'UserEdit',
+                component: UserEdit
 
+            },
+            {
+                path: 'roles',
+                name: 'Roles',
+                component: Roles
+            },
+            {
+                path: '/role/:id',
+                name: 'RoleEdit',
+                component: RoleEdit
+
+            },
+            {
+                path: 'permissions',
+                name: 'Permissions',
+                component: Permissions
+            },
+            {
+                path: '/permissions/:id',
+                name: 'EditPermissions',
+                component: EditPermissions
+
+            },
+        ],
     },
+    // {
+    //     path: '/user/permissions',
+    //     // name: 'Permissions',
+    //     component: Permissions
+    //
+    // },
     // {
     //     path: '/user/management',
     //     name: 'Management',
@@ -50,18 +92,18 @@ const routes = [
     //     component: ManagementEdit
     //
     // },
-    {
-        path: '/user/:id',
-        name: 'UserEdit',
-        component: UserEdit
-
-    },
-    {
-        path: '/permissions/:id',
-        name: 'EditPermissions',
-        component: EditPermissions
-
-    },
+    // {
+    //     path: '/user/:id',
+    //     name: 'UserEdit',
+    //     component: UserEdit
+    //
+    // },
+    // {
+    //     path: '/permissions/:id',
+    //     name: 'EditPermissions',
+    //     component: EditPermissions
+    //
+    // },
 
 ]
 
@@ -74,7 +116,7 @@ router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('x-token')
 
     if(!token) {
-        if (to.name === 'Login' || to.name === 'Registration') {
+        if (to.name === 'Login' || to.name === 'Register') {
             return next()
         } else {
             return next ({
@@ -82,7 +124,7 @@ router.beforeEach((to, from, next) => {
             })
         }
     }
-    if (to.name === 'Login' || to.name === 'Registration' && token) {
+    if (to.name === 'Login' || to.name === 'Register' && token) {
         return next({
             name: 'Home'
         })

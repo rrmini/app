@@ -18,9 +18,9 @@ const actions = {
                         }
                     }) .catch((error) => {
                     console.log(error.response)
-                    // if (error.response.status === 422) {
-                    //     ctx.commit('setErrors', error.response.data.errors)
-                    // } console.log(this.errors)
+                    if (error.response.status === 422) {
+                        ctx.commit('setErrors', error.response.data.errors)
+                    } console.log(this.errors)
                 })
 
             });
@@ -59,9 +59,17 @@ const actions = {
     }
 }
 
-const mutations = {}
+const mutations = {
+    setErrors(state, invalidCredentials) {
+        state.errors = invalidCredentials
+    },
+}
 
-const getters = {}
+const getters = {
+    errors(state) {
+        return state.errors
+    },
+}
 
 export default {
     namespaced: true,

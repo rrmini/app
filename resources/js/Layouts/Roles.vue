@@ -1,14 +1,14 @@
 <template>
     <Modal v-if="isPopupVisible" :style="{ display, opacity }" @close="closePopup">
-        <template #header>Add Permission</template>
+        <template #header>Add Role</template>
         <form>
             <div class="mb-3">
-                <Input type="text" placeholder="add Permission" v-model="permission.name" id="user_name"/>
+                <Input type="text" placeholder="add Role" v-model="role.name" />
             </div>
         </form>
         <div class="modal-footer">
-            <button @click="addPermission" type="button" class="btn btn-info" data-bs-dismiss="modal">Add</button>
-            <button type="button" class="btn btn-info">Update</button>
+            <button @click="addRoles" type="button" class="btn btn-info" data-bs-dismiss="modal">Add</button>
+            <button type="button" class="btn btn-info">Close</button>
         </div>
     </Modal>
     <div class="row">
@@ -16,24 +16,14 @@
             <div class="card">
                 <!-- card-header -->
                 <div class="card-header">
-                    <h3 class="card-title">Permissions list</h3>
-<!--                    <div class="card-tools">-->
-<!--                        <div class="input-group input-group-sm">-->
-<!--                            <input type="text" name="user_search" class="form-controlfloat-right" placeholder="Search">-->
-<!--                            <div class="input-group-append">-->
-<!--                                <button type="submit" class="btn btn-default">-->
-<!--                                    <i class="fas fa-search"></i>-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <h3 class="card-title">Role List</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0">
                     <table class="table table-head-fixed text-nowrap">
                         <thead>
                         <tr>
-                            <th>Permission</th>
+                            <th>Role</th>
                             <th>Action 1</th>
                             <th>Action 2</th>
                             <th>
@@ -42,18 +32,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="permission in getPermissions" :key="permission.id" >
+                        <tr v-for="role in getRoles" :key="role.id" >
 
-                            <td v-if="permission.name" >{{ permission.name }}</td>
+                            <td v-if="role.name" >{{ role.name }}</td>
                             <td v-else>N/A</td>
                             <td>
                                 <router-link
-                                    :to="{ name: 'EditPermissions', params: { id: permission.id }}">
+                                    :to="{ name: 'RoleEdit', params: { id: role.id }}">
                                     <button class="btn btn-info"><i class="fa-solid fa-pen"></i></button>
                                 </router-link>
                             </td>
                             <td>
-                                <button class="btn btn-danger" @click="deletePermission(permission.id)"><i class="fa-solid fa-trash"></i></button>
+                                <button class="btn btn-danger" @click="deleteRoles(role.id)"><i class="fa-solid fa-trash"></i></button>
                             </td>
                             <td></td>
                         </tr>
@@ -71,7 +61,7 @@ import Button from "@/Ui/My-Button.vue";
 import Input from "@/Ui/Input.vue";
 import Modal from "@/Ui/Modal.vue";
 export default {
-    name: "Permissions",
+    name: "Roles",
     components: {
         Button,
         Input,
@@ -82,13 +72,13 @@ export default {
             isPopupVisible: false,
             block: 'none',
             opacity: 0,
-            permission: {
+            role: {
                 name: '',
             }
         }
     },
     created() {
-        this.$store.dispatch('users/getPermissions')
+        this.$store.dispatch('users/getRoles')
     },
     methods: {
         popup() {
@@ -99,19 +89,19 @@ export default {
         closePopup() {
             this.isPopupVisible = false
         },
-        addPermission() {
-            this.$store.dispatch('users/addPermission', this.permission)
+        addRoles() {
+            this.$store.dispatch('users/addRole', this.role)
         },
-        deletePermission(id) {
-            axios.delete('/api/permissions/' + id).then(res =>{
-                this.$store.dispatch('users/getPermissions')
+        deleteRoles(id) {
+            axios.delete('/api/roles/' + id).then(res =>{
+                this.$store.dispatch('users/getRoles')
             })
         },
     },
     computed: {
-        getPermissions: {
+        getRoles: {
             get() {
-                return this.$store.state.users.permissionsList
+                return this.$store.state.users.roleList
             }
         },
     },
