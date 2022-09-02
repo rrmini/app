@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\PermissionController;
+use App\Http\Controllers\Api\ResetPasswordController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\MainController;
@@ -32,3 +33,4 @@ Route::apiResource('roles', RoleController::class);
 Route::apiResource('permissions', PermissionController::class);
 
 Route::post('forgot-password', [ForgotPasswordController::class, "sendResetLinkEmail"]);
+Route::post('reset-password', [ResetPasswordController::class, "reset"]);
