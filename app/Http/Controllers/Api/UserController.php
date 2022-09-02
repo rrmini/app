@@ -109,4 +109,10 @@ class UserController extends Controller
     {
         $user->delete();
     }
+
+    public function changePassword()
+    {}
+
+    public function changeDetails()
+    {}
 }

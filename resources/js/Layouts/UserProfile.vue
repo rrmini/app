@@ -89,47 +89,25 @@
                                 <div class="form-group row">
                                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputName" placeholder="Name" v-model="user.name">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="inputName"
+                                            placeholder="Name"
+                                            v-model="user.name">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="Email"  v-model="user.email">
+                                        <input
+                                            type="email"
+                                            class="form-control"
+                                            id="inputEmail"
+                                            placeholder="Email"
+                                            v-model="user.email">
                                     </div>
                                 </div>
-<!--                                <div class="form-group row">-->
-<!--                                    <label for="inputName2" class="col-sm-2 col-form-label">Old password</label>-->
-<!--                                    <div class="col-sm-10">-->
-<!--                                        <input type="text" class="form-control" id="inputName2" placeholder="Old password">-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="form-group row">-->
-<!--                                    <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>-->
-<!--                                    <div class="col-sm-10">-->
-<!--                                        <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="form-group row">-->
-<!--                                    <label for="inputSkills" class="col-sm-2 col-form-label">New password</label>-->
-<!--                                    <div class="col-sm-10">-->
-<!--                                        <input type="text" class="form-control" id="inputSkills" placeholder="New password">-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                                <div class="form-group row">-->
-<!--                                    <label for="inputSkills" class="col-sm-2 col-form-label">New password confirmation</label>-->
-<!--                                    <div class="col-sm-10">-->
-<!--                                        <input type="text" class="form-control" id="inputSkills" placeholder="New password confirmation">-->
-<!--                                    </div>-->
-<!--                                </div>-->
-
-<!--                                <div class="form-group row">-->
-<!--                                    <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>-->
-<!--                                    <div class="col-sm-10">-->
-<!--                                        <input type="text" class="form-control" id="inputSkills" placeholder="Skills">-->
-<!--                                    </div>-->
-<!--                                </div>-->
 
                                 <div class="form-group row">
                                     <div class="offset-sm-2 col-sm-10">
@@ -155,22 +133,37 @@
                         <div class="active tab-pane" >
                             <form class="form-horizontal">
                                 <div class="form-group row">
-                                    <label for="inputName2" class="col-sm-2 col-form-label">Old password</label>
+                                    <label for="oldPassword" class="col-sm-2 col-form-label">Old password</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputName2" placeholder="Old password">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="oldPassword"
+                                            v-model="user.oldPassword"
+                                            placeholder="Old password">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="inputSkills" class="col-sm-2 col-form-label">New password</label>
+                                    <label for="newPassword" class="col-sm-2 col-form-label">New password</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputSkills" placeholder="New password">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="newPassword"
+                                            v-model="user.newPassword"
+                                            placeholder="New password">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="inputSkills" class="col-sm-2 col-form-label">New password confirmation</label>
+                                    <label for="newPassword_confirmation" class="col-sm-2 col-form-label">New password confirmation</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputSkills" placeholder="New password confirmation">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="newPassword_confirmation"
+                                            v-model="user.newPassword_confirmation"
+                                            placeholder="New password confirmation">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -192,22 +185,23 @@
 
 <script>
 import axios from "../../axios/axios-instance.js"
-import Button from "@/Ui/My-Button.vue";
-import Input from "@/Ui/Input.vue";
+// import Button from "@/Ui/My-Button.vue";
+// import Input from "@/Ui/Input.vue";
 
 export default {
     name: "UserProfile",
-    data  () {
-        return {
-            user: {
-                name: "",
-                email: "",
-                role: {
-                    name
-                }
-            }
+    data:  () => ({
+        user: {
+            name: "",
+            email: "",
+            role: {
+                name
+            },
+            oldPassword: "",
+            newPassword: "",
+            newPassword_confirmation: "",
         }
-    },
+    }),
 }
 </script>
 

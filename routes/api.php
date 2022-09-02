@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ForgotPasswordController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
@@ -29,3 +30,5 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 Route::apiResource('users', UserController::class);
 Route::apiResource('roles', RoleController::class);
 Route::apiResource('permissions', PermissionController::class);
+
+Route::post('forgot-password', [ForgotPasswordController::class, "sendResetLinkEmail"]);
