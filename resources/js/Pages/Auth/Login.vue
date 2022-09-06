@@ -2,11 +2,7 @@
     <authentication-card>
         <h3>Login</h3>
         <div class="card-body">
-<!--            <jet-validation-errors class="mb-3" />-->
-<!--            <div v-if="status" class="alert alert-success mb-3 rounded-0" role="alert">-->
-<!--                {{ status }}-->
-<!--            </div>-->
-
+            <validation-errors v-if="validationErrors" :errors="validationErrors"/>
             <form @submit.prevent="submit">
                 <div class="mb-3">
                     <my-label for="email" value="Email" />
@@ -18,16 +14,6 @@
                     <my-input id="password" type="password" v-model="user.password" required autocomplete="current-password" />
                 </div>
 
-<!--                <div class="mb-3">-->
-<!--                    <div class="custom-control custom-checkbox">-->
-<!--                        <my-checkbox id="remember_me" name="remember" v-model:checked="user.remember" />-->
-
-<!--                        <label class="custom-control-label" for="remember_me">-->
-<!--                            Remember Me-->
-<!--                        </label>-->
-<!--                    </div>-->
-<!--                </div>-->
-
                 <div class="mb-0">
                     <div class="d-flex justify-content-between align-items-baseline">
 <!--                  v-if="canResetPassword"      :href="route('password.request')"-->
@@ -36,9 +22,6 @@
                         </router-link>
 
                         <my-button class="ms-4 text-white-50" @click.prevent="login" >
-<!--                            <div class="spinner-border spinner-border-sm" role="status">-->
-<!--                                <span class="visually-hidden">Loading...</span>-->
-<!--                            </div>-->
                             Log in
                         </my-button>
                     </div>
@@ -50,11 +33,14 @@
 
 <script>
 import {defineComponent} from "vue";
+import { mapGetters } from 'vuex';
+
 import AuthenticationCard from '@/Layouts/AuthenticationCard.vue'
 import MyButton from '@/Ui/My-Button.vue'
 import MyCheckbox from '@/Ui/Checkbox.vue'
 import MyInput from '@/Ui/Input.vue'
 import MyLabel from '@/Ui/Label.vue'
+import ValidationErrors from "@/Ui/ValidationErrors.vue";
 export default defineComponent ({
     components: {
         AuthenticationCard,
@@ -62,15 +48,20 @@ export default defineComponent ({
         MyCheckbox,
         MyInput,
         MyLabel,
+        ValidationErrors,
     },
     data() {
         return {
             user: {
                 email : '' ,
                 password: '',
-                // remember: false
             }
         }
+    },
+    computed: {
+        ...mapGetters({
+            validationErrors: "auth/errors"
+        })
     },
     methods: {
         login() {

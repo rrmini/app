@@ -17,8 +17,9 @@ instance.interceptors.response.use({}, error => {
         }
         window.location.replace('/user/login')
     }
-    // else if (error.response.status ===422 || error.response.status ===500) {
-    //     console.log(error.response.data)
-    // }
+    else if (error.response.status ===422 || error.response.status ===500) {
+        console.log(error.response.data)
+        return Promise.reject(error);
+    }
 })
 export default instance
