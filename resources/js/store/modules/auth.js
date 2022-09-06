@@ -28,7 +28,7 @@ const actions = {
         });
     },
 
-    registerUser({}, user) {
+    registerUser({commit}, user) {
         return new Promise((resolve) => {
             axios.get('/sanctum/csrf-cookie').then(response => {
                 axios.post('/register', {
@@ -45,6 +45,9 @@ const actions = {
                         }
                     }) .catch((error) => {
                     console.log(error.response)
+                    if (error.response.status === 422) {
+                        commit('setErrors', error.response.data.errors)
+                    }
                 })
             });
         });
