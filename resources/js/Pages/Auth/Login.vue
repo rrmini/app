@@ -15,10 +15,14 @@
                 </div>
 
                 <div class="mb-0">
-                    <div class="d-flex justify-content-between align-items-baseline">
+                    <div class="d-flex justify-content-between align-items-baseline flex-column">
 <!--                  v-if="canResetPassword"      :href="route('password.request')"-->
                         <router-link :to="'/user/register'" class="text-muted me-3">
                             Not registered ?
+                        </router-link>
+
+                        <router-link :to="'/forgot-password'" class="text-muted me-3">
+                            Forgot your password?
                         </router-link>
 
                         <my-button class="ms-4 text-white-50" @click.prevent="login" >
@@ -42,6 +46,7 @@ import MyInput from '@/Ui/Input.vue'
 import MyLabel from '@/Ui/Label.vue'
 import ValidationErrors from "@/Ui/ValidationErrors.vue";
 export default defineComponent ({
+    name: 'Login',
     components: {
         AuthenticationCard,
         MyButton,

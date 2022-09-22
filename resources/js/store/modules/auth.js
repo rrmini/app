@@ -2,6 +2,7 @@ import axios from "../../../axios/axios-instance";
 
 const state = {
     errors: null,
+    invalidCredentials: '',
 }
 
 const actions = {
@@ -61,17 +62,47 @@ const actions = {
 
         })
     },
+
+    forgotPassword(ctx, user) {
+        return new Promise((resolve, reject) => {
+            axios
+                .post('/api/forgot-password', {
+                    email: user.email
+                })
+                .then(response => {
+                    if (response.data) {
+                        window.location.replace("/login")
+                        resolve(response)
+                    } else  {
+                        reject(response)
+                    }
+                })
+                .catch((error) => {
+                    console.log(error.response)
+                    if (error.response.status === 422) {
+                        ctx.commit('setErrors', error.response.data.errors)
+                    } else if (error.response.status === 500)
+                        ctx.commit('setInvalidCredentials', error.response.data.error)
+                })
+        })
+    },
 }
 
 const mutations = {
     setErrors(state, invalidCredentials) {
         state.errors = invalidCredentials
     },
+    setInvalidCredentials(state, invalidCredentials) {
+        state.invalidCredentials = invalidCredentials
+    },
 }
 
 const getters = {
     errors(state) {
         return state.errors
+    },
+    invalidCredentials(state) {
+        return state.invalidCredentials
     },
 }
 

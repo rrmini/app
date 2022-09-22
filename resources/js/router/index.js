@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from "@/Pages/Home.vue";
 import Login from "@/Pages/Auth/Login.vue";
 import Register from "@/Pages/Auth/Register.vue";
+import ForgotPassword from "@/Pages/Auth/ForgotPassword.vue";
 import Dashboard from "@/Pages/Admin/Dashboard.vue";
 import UserEdit from "@/layouts/UserEdit.vue";
 import Permissions from "@/Layouts/Permissions.vue";
@@ -10,7 +11,6 @@ import Roles from "@/layouts/Roles.vue";
 import RoleEdit from "@/layouts/RoleEdit.vue";
 import Users from "@/Layouts/Users.vue";
 import UserProfile from "@/Layouts/UserProfile.vue";
-
 
 const routes = [
     {
@@ -27,6 +27,11 @@ const routes = [
         path: '/user/register',
         name: 'Register',
         component: Register,
+    },
+    {
+        path: '/forgot-password',
+        name: 'ForgotPassword',
+        component: ForgotPassword,
     },
     {
         path: '/user/dashboard',
@@ -74,37 +79,6 @@ const routes = [
             },
         ],
     },
-    // {
-    //     path: '/user/permissions',
-    //     // name: 'Permissions',
-    //     component: Permissions
-    //
-    // },
-    // {
-    //     path: '/user/management',
-    //     name: 'Management',
-    //     component: Management
-    //
-    // },
-    // {
-    //     path: '/management/:id',
-    //     name: 'ManagementEdit',
-    //     component: ManagementEdit
-    //
-    // },
-    // {
-    //     path: '/user/:id',
-    //     name: 'UserEdit',
-    //     component: UserEdit
-    //
-    // },
-    // {
-    //     path: '/permissions/:id',
-    //     name: 'EditPermissions',
-    //     component: EditPermissions
-    //
-    // },
-
 ]
 
 const router = createRouter({
@@ -116,7 +90,7 @@ router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('x-token')
 
     if(!token) {
-        if (to.name === 'Login' || to.name === 'Register') {
+        if (to.name === 'Login' || to.name === 'Register' || to.name === 'ForgotPassword') {
             return next()
         } else {
             return next ({
