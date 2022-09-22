@@ -37,7 +37,7 @@
 
 <script>
 import {defineComponent} from "vue";
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 import AuthenticationCard from '@/Layouts/AuthenticationCard.vue'
 import MyButton from '@/Ui/My-Button.vue'
@@ -69,6 +69,9 @@ export default defineComponent ({
         })
     },
     methods: {
+        ...mapActions({
+            loginUser: 'auth/loginUser',
+        }),
         login() {
             this.$store.dispatch('auth/loginUser', this.user)
         },

@@ -6,7 +6,7 @@ const state = {
 }
 
 const actions = {
-    loginUser({commit}, user) {
+    loginUser(ctx, user) {
         return new Promise(function (resolve)  {
             axios.get('/sanctum/csrf-cookie').then( function (response) {
                 axios.post('/login', {
@@ -20,8 +20,9 @@ const actions = {
                             console.log(response)
                         }
                     }) .catch( (error) => {
+                    console.log(error.response)
                     if (error.response.status === 422) {
-                        commit('setErrors', error.response.data.errors)
+                        ctx.commit('setErrors', error.response.data.errors)
                     }
                 })
 
