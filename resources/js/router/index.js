@@ -11,6 +11,7 @@ import Roles from "@/layouts/Roles.vue";
 import RoleEdit from "@/layouts/RoleEdit.vue";
 import Users from "@/Layouts/Users.vue";
 import UserProfile from "@/Layouts/UserProfile.vue";
+import ResetPassword from "@/Pages/Auth/ResetPassword.vue";
 
 const routes = [
     {
@@ -32,6 +33,10 @@ const routes = [
         path: '/forgot-password',
         name: 'ForgotPassword',
         component: ForgotPassword,
+    },
+    {   path: '/reset-password/:token',
+        name: 'ResetPassword',
+        component: ResetPassword,
     },
     {
         path: '/user/dashboard',
@@ -90,7 +95,7 @@ router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('x-token')
 
     if(!token) {
-        if (to.name === 'Login' || to.name === 'Register' || to.name === 'ForgotPassword') {
+        if (to.name === 'Login' || to.name === 'Register' || to.name === 'ForgotPassword' || to.name === 'ResetPassword') {
             return next()
         } else {
             return next ({
